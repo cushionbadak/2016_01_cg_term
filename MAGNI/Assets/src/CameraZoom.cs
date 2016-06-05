@@ -10,7 +10,7 @@ public class CameraZoom : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKey("space")) {
+	    if(Input.GetKey("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) {
             Camera.main.orthographicSize = (float)(0.98) * Camera.main.orthographicSize;
         }
 	}
