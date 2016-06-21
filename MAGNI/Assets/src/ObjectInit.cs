@@ -4,8 +4,10 @@ using System.Collections;
 public class ObjectInit : MonoBehaviour {
 
     //public Object bigbig, smallsmall;
-    public GameObject BigOne, SmallOne;
+    public GameObject BigOne;
+    public GameObject[] SmallOne;
     public int smallObjNum;
+    public int interval;
     private int son_sqr;
     private int count;
     private int prev_count;
@@ -19,9 +21,12 @@ public class ObjectInit : MonoBehaviour {
         son_sqr = smallObjNum * smallObjNum;
         count = 0;
         prev_count = 0;
+        SmallOne = new GameObject[son_sqr];
+
         prefablist = GameObject.Find("PrefabList");
         plist = prefablist.GetComponent<PrefabList>();
         objsLen = plist.getObjsLen();
+
         First();
 	}
 	
@@ -33,11 +38,18 @@ public class ObjectInit : MonoBehaviour {
     void First()
     {
         Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
-        
+
         BigOne = Instantiate(plist.getObj(0), zero, Quaternion.identity) as GameObject;
-        SmallOne = Instantiate(plist.getObj(getCount(true)), zero, Quaternion.identity) as GameObject;
         BigOne.name = "BigOne";
-        SmallOne.name = "SmallOne";
+
+        int c = getCount(true);
+        for (int i = 0; i < son_sqr; i++)
+        {
+            SmallOne[i] = Instantiate(plist.getObj(c), zero, Quaternion.identity) as GameObject;
+            SmallOne[i].name = "SmallOne" + i;
+        }
+        
+        
         initializeBigOne(BigOne);
         initializeSmallOne(SmallOne);
     }
@@ -48,12 +60,15 @@ public class ObjectInit : MonoBehaviour {
 
         Destroy(BigOne);
         BigOne = Instantiate(plist.getObj(getPrevCount()), zero, Quaternion.identity) as GameObject;
-        Destroy(SmallOne);
-        SmallOne = Instantiate(plist.getObj(getCount(true)), zero, Quaternion.identity) as GameObject;
-
         BigOne.name = "BigOne";
-        SmallOne.name = "SmallOne";
-        
+
+        int c = getCount(true);
+        for(int i = 0; i < son_sqr; i++)
+        {
+            Destroy(SmallOne[i]);
+            SmallOne[i] = Instantiate(plist.getObj(c), zero, Quaternion.identity) as GameObject;
+            SmallOne[i].name = "SmallOne" + i;
+        }
         
         initializeBigOne(BigOne);
         initializeSmallOne(SmallOne);
@@ -67,19 +82,25 @@ public class ObjectInit : MonoBehaviour {
         foreach (Transform child in obj.transform)
         {
             child.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
-            child.transform.localPosition = new Vector3(0.0f, 0.0f, 20.0f);
+            child.transform.localPosition = new Vector3(0.0f, 0.0f, 40.0f);
         }
     }
 
-    void initializeSmallOne(GameObject obj)
+    void initializeSmallOne(GameObject[] obj)
     {
         //Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
         //GameObject obj = GameObject.Find("SmallOne");
         //GameObject obj2 = Instantiate(obj, zero, Quaternion.identity) as GameObject;
-        foreach (Transform child in obj.transform)
+        int i, j;
+        int c = 0;
+        foreach (GameObject obj2 in obj)
         {
-            child.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
-            child.transform.localPosition = new Vector3(0.0f, 0.0f, 10.0f);
+            //TODOTODOTODO
+            foreach (Transform child in obj2.transform)
+            {
+                child.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+                child.transform.localPosition = new Vector3(0.0f, 0.0f, 20.0f);
+            }
         }
     }
 

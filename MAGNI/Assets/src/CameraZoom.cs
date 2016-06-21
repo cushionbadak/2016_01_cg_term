@@ -1,4 +1,4 @@
-﻿//#define DEBUG_MODE
+﻿#define DEBUG_MODE
 
 using UnityEngine;
 using System.Collections;
@@ -11,11 +11,11 @@ public class CameraZoom : MonoBehaviour {
 	
 	void Update () {
         // default zoom
-        Camera.main.orthographicSize = (float)(0.99) * Camera.main.orthographicSize;
+        Camera.main.orthographicSize = (float)(0.96) * Camera.main.orthographicSize;
 #if (DEBUG_MODE)
         if (Input.GetKey(KeyCode.Space))
         {
-            Camera.main.orthographicSize = (float)(0.98) * Camera.main.orthographicSize;
+            Camera.main.orthographicSize = (float)(0.96) * Camera.main.orthographicSize;
         }
 #endif
         if(Input.touchCount > 0) {
