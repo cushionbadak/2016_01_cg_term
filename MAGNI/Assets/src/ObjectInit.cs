@@ -7,7 +7,7 @@ public class ObjectInit : MonoBehaviour {
     public GameObject BigOne;
     public GameObject[] SmallOne;
     public int smallObjNum;
-    public int interval;
+    public float interval;
     private int son_sqr;
     private int count;
     private int prev_count;
@@ -91,15 +91,18 @@ public class ObjectInit : MonoBehaviour {
         //Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
         //GameObject obj = GameObject.Find("SmallOne");
         //GameObject obj2 = Instantiate(obj, zero, Quaternion.identity) as GameObject;
-        int i, j;
+        int i, j, k;
         int c = 0;
+        k = (int)(smallObjNum / 2 + 0.5);
         foreach (GameObject obj2 in obj)
         {
-            //TODOTODOTODO
+            i = c / smallObjNum - k;
+            j = c % smallObjNum - k;
+            c++;
             foreach (Transform child in obj2.transform)
             {
-                child.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
-                child.transform.localPosition = new Vector3(0.0f, 0.0f, 20.0f);
+                child.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+                child.transform.localPosition = new Vector3(interval * j, interval * i, 20.0f);
             }
         }
     }
