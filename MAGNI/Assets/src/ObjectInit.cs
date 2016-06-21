@@ -12,6 +12,7 @@ public class ObjectInit : MonoBehaviour {
     private int count;
     private int prev_count;
     private int objsLen;
+    private Quaternion prev_qt;
 
     GameObject prefablist;
     PrefabList plist;
@@ -22,6 +23,7 @@ public class ObjectInit : MonoBehaviour {
         count = 0;
         prev_count = 0;
         SmallOne = new GameObject[son_sqr];
+        prev_qt = Quaternion.identity;
 
         prefablist = GameObject.Find("PrefabList");
         plist = prefablist.GetComponent<PrefabList>();
@@ -62,6 +64,12 @@ public class ObjectInit : MonoBehaviour {
         BigOne = Instantiate(plist.getObj(getPrevCount()), zero, Quaternion.identity) as GameObject;
         BigOne.name = "BigOne";
 
+        foreach(Transform child in SmallOne[0].transform)
+        {
+            prev_qt = child.transform.rotation;
+            break;
+        }
+
         int c = getCount(true);
         for(int i = 0; i < son_sqr; i++)
         {
@@ -83,6 +91,7 @@ public class ObjectInit : MonoBehaviour {
         {
             child.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
             child.transform.localPosition = new Vector3(0.0f, 0.0f, 500.0f);
+            child.transform.localRotation = prev_qt;
         }
     }
 
@@ -101,7 +110,7 @@ public class ObjectInit : MonoBehaviour {
             c++;
             foreach (Transform child in obj2.transform)
             {
-                child.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+                child.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
                 child.transform.localPosition = new Vector3(interval * j, interval * i, 50.0f);
             }
         }

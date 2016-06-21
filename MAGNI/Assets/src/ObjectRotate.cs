@@ -24,10 +24,10 @@ public class ObjectRotate : MonoBehaviour
 #if (DEBUG_MODE)
         Vector2 dp = new Vector2(1.0f, 1.0f);
         Vector3 axis = new Vector3(dp.y, -1 * dp.x, 0.0f);
-        foreach(Transform child in objIT.BigOne.transform)
-        {
-            child.transform.Rotate(axis, rotateSpeed, Space.Self);
-        }
+        //foreach(Transform child in objIT.BigOne.transform)
+        //{
+        //    child.transform.Rotate(axis, rotateSpeed, Space.Self);
+        //}
         for (int i = 0; i < objIT.getSon(); i++)
         {
             foreach (Transform child in objIT.SmallOne[i].transform)
@@ -40,18 +40,18 @@ public class ObjectRotate : MonoBehaviour
         {
             Vector2 dp = Input.GetTouch(0).deltaPosition;
             Vector3 axis = new Vector3(dp.y, -1 * dp.x, 0.0f);
-            foreach (Transform child in objIT.BigOne.transform)
-            {
-                child.transform.Rotate(axis, rotateSpeed, Space.Self);
-            }
+            //foreach (Transform child in objIT.BigOne.transform)
+            //{
+            //    child.transform.Rotate(axis, rotateSpeed, Space.World);
+            //}
             for (int i = 0; i < objIT.getSon(); i++)
             {
                 foreach (Transform child in objIT.SmallOne[i].transform)
                 {
-                    child.transform.Rotate(axis, rotateSpeed, Space.Self);
+                    child.transform.Rotate(axis, rotateSpeed, Space.World);
                 }
             }
         }
-	}
 #endif
+    }
 }
