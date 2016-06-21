@@ -30,4 +30,9 @@ public class PrefabList : MonoBehaviour {
         return objs[n];
     }
 
+    public int getObjsLen()
+    {
+        return objsLen;
+    }
+
 }
