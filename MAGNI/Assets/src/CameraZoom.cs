@@ -4,14 +4,14 @@ using UnityEngine;
 using System.Collections;
 
 public class CameraZoom : MonoBehaviour {
-
-	// Use this for initialization
+    
 	void Start () {
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
+        // default zoom
+        Camera.main.orthographicSize = (float)(0.99) * Camera.main.orthographicSize;
 #if (DEBUG_MODE)
         if (Input.GetKey(KeyCode.Space))
         {
