@@ -6,10 +6,15 @@ public class PrefabList : MonoBehaviour {
     public Object[] objs;
     private int objsLen;
     
-	void Start () {
+	void Awake () {
         objs = Resources.LoadAll("prefabs") as Object[];
         objsLen = objs.Length;
 	}
+
+    void Start()
+    {
+
+    }
 	
 	void Update () {
 	
@@ -17,7 +22,12 @@ public class PrefabList : MonoBehaviour {
 
     public Object getObj(int i)
     {
-        return objs[i % objsLen];
+        int n;
+        if (objsLen <= i)
+            n = i % objsLen;
+        else
+            n = i;
+        return objs[n];
     }
 
 }
