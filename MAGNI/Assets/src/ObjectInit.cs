@@ -82,7 +82,7 @@ public class ObjectInit : MonoBehaviour {
         foreach (Transform child in obj.transform)
         {
             child.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
-            child.transform.localPosition = new Vector3(0.0f, 0.0f, 40.0f);
+            child.transform.localPosition = new Vector3(0.0f, 0.0f, 500.0f);
         }
     }
 
@@ -102,7 +102,7 @@ public class ObjectInit : MonoBehaviour {
             foreach (Transform child in obj2.transform)
             {
                 child.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
-                child.transform.localPosition = new Vector3(interval * j, interval * i, 20.0f);
+                child.transform.localPosition = new Vector3(interval * j, interval * i, 50.0f);
             }
         }
     }
@@ -118,4 +118,9 @@ public class ObjectInit : MonoBehaviour {
     {
         return prev_count;
     }
+    public int getSon()
+    {
+        return son_sqr;
+    }
+
 }
