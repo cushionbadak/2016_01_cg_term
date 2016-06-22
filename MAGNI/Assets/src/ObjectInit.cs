@@ -107,10 +107,12 @@ public class ObjectInit : MonoBehaviour {
         //GameObject obj = GameObject.Find("SmallOne");
         //GameObject obj2 = Instantiate(obj, zero, Quaternion.identity) as GameObject;
         int i, j, k;
+        float r;
         int c = 0;
         float interval = (obj[0].GetComponent<PublicProp>()).interval;
         k = (int)(smallObjNum / 2 + 0.5);
-        
+        r = UnityEngine.Random.Range(0.0f, 360.0f);
+
         foreach (GameObject obj2 in obj)
         {
             i = c / smallObjNum - k;
@@ -120,6 +122,7 @@ public class ObjectInit : MonoBehaviour {
             {
                 child.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
                 child.transform.position = new Vector3(interval * j, interval * i, 50.0f);
+                child.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, r, 0.0f));
             }
         }
     }
