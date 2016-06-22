@@ -11,16 +11,25 @@ public class ObjectRotate : MonoBehaviour
     GameObject objInit;
     ObjectInit objIT;
 
+    Vector3 yweight;
+
     // Use this for initialization
     void Start()
     {
         objInit = GameObject.Find("ObjectManager");
         objIT = objInit.GetComponent<ObjectInit>();
+
+        yweight = new Vector3(0.05f, 1.0f, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Camera.main.orthographicSize < 0.002f || Camera.main.orthographicSize > 0.5)
+        {
+            return;
+        }
+
 #if (DEBUG_MODE)
         if (Input.GetKey(KeyCode.V))
         {
@@ -42,7 +51,7 @@ public class ObjectRotate : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Vector2 dp = Input.GetTouch(0).deltaPosition;
-            Vector3 axis = new Vector3(dp.y, -1 * dp.x, 0.0f);
+            Vector3 axis = Vector3.Scale(new Vector3(dp.y, -1 * dp.x, 0.0f), yweight);
             //foreach (Transform child in objIT.BigOne.transform)
             //{
             //    child.transform.Rotate(axis, rotateSpeed, Space.World);
@@ -63,7 +72,7 @@ public class ObjectRotate : MonoBehaviour
             {
                 foreach (Transform child in objIT.SmallOne[i].transform)
                 {
-                    child.transform.Rotate(new Vector3(-1.0f, 1.0f, 0.0f), rotateSpeed / (float)2.0, Space.World);
+                    child.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), rotateSpeed / (float)10.0, Space.World);
                 }
             }
         }

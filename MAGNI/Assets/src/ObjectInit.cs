@@ -1,7 +1,8 @@
-﻿#define SEQUENCE_MODE
+﻿//#define SEQUENCE_MODE
 
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class ObjectInit : MonoBehaviour {
 
@@ -128,7 +129,7 @@ public class ObjectInit : MonoBehaviour {
 #if (SEQUENCE_MODE)
         count = count + 1;
 #else
-        count = (int)(Random.Range(0, (float)objsLen - (float)0.1));
+        count = (int)(UnityEngine.Random.Range(0, (float)objsLen - (float)0.1));
 #endif
         if (prev_change)
             prev_count = count;
