@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#define SEQUENCE_MODE
+
+using UnityEngine;
 using System.Collections;
 
 public class ObjectInit : MonoBehaviour {
@@ -7,7 +9,6 @@ public class ObjectInit : MonoBehaviour {
     public GameObject BigOne;
     public GameObject[] SmallOne;
     public int smallObjNum;
-    public float interval;
     private int son_sqr;
     private int count;
     private int prev_count;
@@ -41,13 +42,15 @@ public class ObjectInit : MonoBehaviour {
     {
         Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
 
-        BigOne = Instantiate(plist.getObj(0), zero, Quaternion.identity) as GameObject;
+        //BigOne = Instantiate(plist.getObj(0), zero, Quaternion.identity) as GameObject;
+        BigOne = Instantiate(plist.getObj(0)) as GameObject;
         BigOne.name = "BigOne";
 
         int c = getCount(true);
         for (int i = 0; i < son_sqr; i++)
         {
-            SmallOne[i] = Instantiate(plist.getObj(c), zero, Quaternion.identity) as GameObject;
+            //SmallOne[i] = Instantiate(plist.getObj(c), zero, Quaternion.identity) as GameObject;
+            SmallOne[i] = Instantiate(plist.getObj(c)) as GameObject;
             SmallOne[i].name = "SmallOne" + i;
         }
         
@@ -61,7 +64,8 @@ public class ObjectInit : MonoBehaviour {
         Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
 
         Destroy(BigOne);
-        BigOne = Instantiate(plist.getObj(getPrevCount()), zero, Quaternion.identity) as GameObject;
+        //BigOne = Instantiate(plist.getObj(getPrevCount()), zero, Quaternion.identity) as GameObject;
+        BigOne = Instantiate(plist.getObj(getPrevCount())) as GameObject;
         BigOne.name = "BigOne";
 
         foreach(Transform child in SmallOne[0].transform)
@@ -74,7 +78,8 @@ public class ObjectInit : MonoBehaviour {
         for(int i = 0; i < son_sqr; i++)
         {
             Destroy(SmallOne[i]);
-            SmallOne[i] = Instantiate(plist.getObj(c), zero, Quaternion.identity) as GameObject;
+            //SmallOne[i] = Instantiate(plist.getObj(c), zero, Quaternion.identity) as GameObject;
+            SmallOne[i] = Instantiate(plist.getObj(c)) as GameObject;
             SmallOne[i].name = "SmallOne" + i;
         }
         
@@ -102,7 +107,9 @@ public class ObjectInit : MonoBehaviour {
         //GameObject obj2 = Instantiate(obj, zero, Quaternion.identity) as GameObject;
         int i, j, k;
         int c = 0;
+        float interval = (obj[0].GetComponent<PublicProp>()).interval;
         k = (int)(smallObjNum / 2 + 0.5);
+        
         foreach (GameObject obj2 in obj)
         {
             i = c / smallObjNum - k;
@@ -118,7 +125,11 @@ public class ObjectInit : MonoBehaviour {
 
     int getCount(bool prev_change)
     {
+#if (SEQUENCE_MODE)
+        count = count + 1;
+#else
         count = (int)(Random.Range(0, (float)objsLen - (float)0.1));
+#endif
         if (prev_change)
             prev_count = count;
         return count;
