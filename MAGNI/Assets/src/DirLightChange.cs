@@ -24,10 +24,10 @@ public class DirLightChange : MonoBehaviour {
 	    if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             int x = count % 3;
-            int y = count % 7;
-            int z = count % 5;
-            dr[x].intensity = (y + 1) * (0.05f) + 0.3f;
-            whitelight.intensity = (z + 1) * (0.03f) + 0.2f;
+            float y = Random.Range(-0.05f, 0.05f);
+            float z = Random.Range(-0.05f, 0.05f);
+            dr[x].intensity = y + 0.5f;
+            whitelight.intensity = z + 0.4f;
             count++;
         }
 	}

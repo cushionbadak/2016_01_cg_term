@@ -70,7 +70,7 @@ public class ObjectRotate : MonoBehaviour
             {
                 foreach (Transform child in objIT.SmallOne[i].transform)
                 {
-                    child.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), rotateSpeed / (float)2.0, Space.World);
+                    child.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), rotateSpeed / (float)4.0, Space.World);
                 }
             }
         }

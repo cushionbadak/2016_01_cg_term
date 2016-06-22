@@ -1,4 +1,4 @@
-﻿//#define SEQUENCE_MODE
+﻿#define SEQUENCE_MODE
 
 using UnityEngine;
 using System.Collections;
