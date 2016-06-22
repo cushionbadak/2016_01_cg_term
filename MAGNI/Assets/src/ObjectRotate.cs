@@ -1,4 +1,4 @@
-﻿#define DEBUG_MODE
+﻿//#define DEBUG_MODE
 
 using UnityEngine;
 using System.Collections;
@@ -22,17 +22,20 @@ public class ObjectRotate : MonoBehaviour
     void Update()
     {
 #if (DEBUG_MODE)
-        Vector2 dp = new Vector2(1.0f, 1.0f);
-        Vector3 axis = new Vector3(dp.y, -1 * dp.x, 0.0f);
-        //foreach(Transform child in objIT.BigOne.transform)
-        //{
-        //    child.transform.Rotate(axis, rotateSpeed, Space.Self);
-        //}
-        for (int i = 0; i < objIT.getSon(); i++)
+        if (Input.GetKey(KeyCode.V))
         {
-            foreach (Transform child in objIT.SmallOne[i].transform)
+            Vector2 dp = new Vector2(1.0f, 1.0f);
+            Vector3 axis = new Vector3(dp.y, -1 * dp.x, 0.0f);
+            //foreach(Transform child in objIT.BigOne.transform)
+            //{
+            //    child.transform.Rotate(axis, rotateSpeed, Space.Self);
+            //}
+            for (int i = 0; i < objIT.getSon(); i++)
             {
-                child.transform.Rotate(axis, rotateSpeed, Space.Self);
+                foreach (Transform child in objIT.SmallOne[i].transform)
+                {
+                    child.transform.Rotate(axis, rotateSpeed, Space.Self);
+                }
             }
         }
 #else
@@ -53,5 +56,16 @@ public class ObjectRotate : MonoBehaviour
             }
         }
 #endif
+        //default rotation
+        else
+        {
+            for (int i = 0; i < objIT.getSon(); i++)
+            {
+                foreach (Transform child in objIT.SmallOne[i].transform)
+                {
+                    child.transform.Rotate(new Vector3(-1.0f, 1.0f, 0.0f), rotateSpeed / (float)2.0, Space.World);
+                }
+            }
+        }
     }
 }
