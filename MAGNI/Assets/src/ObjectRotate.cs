@@ -18,8 +18,6 @@ public class ObjectRotate : MonoBehaviour
     {
         objInit = GameObject.Find("ObjectManager");
         objIT = objInit.GetComponent<ObjectInit>();
-
-        yweight = new Vector3(0.05f, 1.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -51,7 +49,7 @@ public class ObjectRotate : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Vector2 dp = Input.GetTouch(0).deltaPosition;
-            Vector3 axis = Vector3.Scale(new Vector3(dp.y, -1 * dp.x, 0.0f), yweight);
+            Vector3 axis = new Vector3(0.0f, -1 * dp.x, 0.0f);
             //foreach (Transform child in objIT.BigOne.transform)
             //{
             //    child.transform.Rotate(axis, rotateSpeed, Space.World);
@@ -72,7 +70,7 @@ public class ObjectRotate : MonoBehaviour
             {
                 foreach (Transform child in objIT.SmallOne[i].transform)
                 {
-                    child.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), rotateSpeed / (float)10.0, Space.World);
+                    child.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), rotateSpeed / (float)15.0, Space.World);
                 }
             }
         }
