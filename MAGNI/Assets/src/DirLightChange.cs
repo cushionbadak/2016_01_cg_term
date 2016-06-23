@@ -25,23 +25,29 @@ public class DirLightChange : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
         if (Time.time * 1000 > startTime + 500)
         {
             startTime = Time.time * 1000;
             int x = count % 3;
             float y = Random.Range(-0.05f, 0.05f);
             dr[x].intensity = y + 0.5f;
-            if (!flag)
-            {
-                whitelight.intensity = 0.6f;
-                flag = true;
-            }     
-            count++;
+            
+            //if (!flag)
+            //{
+            //    whitelight.intensity = 0.6f;
+            //    flag = true;
+            //}     
+            //count++;
+            
         }
+        */
+        /*
         if(flag && Time.time * 1000 > startTime + 50)
         {
             whitelight.intensity = 0.5f;
             flag = false;
         }
+        */
 	}
 }

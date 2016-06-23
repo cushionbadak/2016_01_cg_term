@@ -35,7 +35,7 @@ public class CameraZoom : MonoBehaviour {
 
         nowTime = Time.time * 1000;
 
-        if (nowTime > startTime + 500 && !flag)
+        if (nowTime > startTime + 950 && !flag)
         {
             Camera.main.orthographicSize = Camera.main.orthographicSize * 0.9f;
             startTime = nowTime;
@@ -44,7 +44,7 @@ public class CameraZoom : MonoBehaviour {
         else if (flag && nowTime > startTime + 70)
         {
             flag = false;
-            Camera.main.orthographicSize = Camera.main.orthographicSize * 1.11f;
+            Camera.main.orthographicSize = Camera.main.orthographicSize * 1.03f;
         }
 	}
 }
