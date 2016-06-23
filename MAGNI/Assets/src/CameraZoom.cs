@@ -7,8 +7,13 @@ public class CameraZoom : MonoBehaviour {
 
     public float defaultspeed;
     public float clickspeed;
-	void Start () {
+    private float startTime;
+    private float nowTime;
+    private bool flag;
 
+	void Start () {
+        startTime = Time.time * 1000;
+        flag = false;
 	}
 	
 	void Update () {
@@ -26,6 +31,20 @@ public class CameraZoom : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        nowTime = Time.time * 1000;
+
+        if (nowTime > startTime + 500 && !flag)
+        {
+            Camera.main.orthographicSize = Camera.main.orthographicSize * 0.9f;
+            startTime = nowTime;
+            flag = true;
+        }
+        else if (flag && nowTime > startTime + 70)
+        {
+            flag = false;
+            Camera.main.orthographicSize = Camera.main.orthographicSize * 1.11f;
         }
 	}
 }

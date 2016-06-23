@@ -9,13 +9,13 @@ public class RevertCamera : MonoBehaviour {
     GameObject objInit;
     ObjectInit objIT;
     GameManager gm;
-    UIManager um;
+    //UIManager um;
 
     void Start () {
         objInit = GameObject.Find("ObjectManager");
         objIT = objInit.GetComponent<ObjectInit>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        um = GameObject.Find("Text").GetComponent<UIManager>();
+        //um = GameObject.Find("Text").GetComponent<UIManager>();
     }
 	
 	void Update () {
@@ -28,7 +28,7 @@ public class RevertCamera : MonoBehaviour {
                 gm.writeScore(child.eulerAngles.y < 210.0f && child.eulerAngles.y > 150.0f);
                 break;
             }
-            um.updateScore();
+            //um.updateScore();
                 
             // Camera revert
             Camera.main.orthographicSize = initialCameraSize;
