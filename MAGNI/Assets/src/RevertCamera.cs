@@ -22,8 +22,9 @@ public class RevertCamera : MonoBehaviour {
         //if Camera is zoomed to threshold
         if(Camera.main.orthographicSize < threshold)
         {
+            int tt = objIT.getCurIndex() * objIT.getSon();
             // Scoring
-            foreach (Transform child in GameObject.Find("SmallOne0").transform)
+            foreach (Transform child in GameObject.Find("SmallOne" + tt).transform)
             {
                 gm.writeScore(child.eulerAngles.y < 210.0f && child.eulerAngles.y > 150.0f);
                 break;

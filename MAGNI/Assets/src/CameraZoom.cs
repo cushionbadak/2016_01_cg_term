@@ -32,9 +32,10 @@ public class CameraZoom : MonoBehaviour {
         {
             Application.Quit();
         }
-
+        /*
         nowTime = Time.time * 1000;
 
+        //if (nowTime > startTime + 1000000000 && !flag) //nozoom
         if (nowTime > startTime + 950 && !flag)
         {
             Camera.main.orthographicSize = Camera.main.orthographicSize * 0.9f;
@@ -46,7 +47,6 @@ public class CameraZoom : MonoBehaviour {
             flag = false;
             Camera.main.orthographicSize = Camera.main.orthographicSize * 1.03f;
         }
+        */
 	}
 }
-//Input.GetKey("space") || 
-// && Input.GetTouch(0).phase == TouchPhase.Moved
